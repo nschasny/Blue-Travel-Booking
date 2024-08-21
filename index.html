@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blue Travel - Book Request</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="booking-icon.png" type="image/png">
+</head>
+<body>
+
+  <header>
+    <h1>Blue Travel Booking</h1>
+    <nav>
+      <div class="hamburger-menu">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Info</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">Calendar</a></li>
+        <li><a href="#">Tickets</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="booking-request">
+    <h1>Blue Travel - Booking Request</h1>
+    <div class="icon-container">
+        <img src="plane.png" alt="Plane Icon" class="icon">
+    </div>
+</section>
+
+    <section>
+        <img class="main-picture" src="luxury.jpg" alt="Main Image">
+    </section>
+
+    <section class="description">
+        <p>
+            <b>Free tastings of</b>&nbsp;wine, tea, and honey will make your holiday even more enjoyable. Immerse yourself in&nbsp;the delightful array of&nbsp;flavors and aromas, creating unforgettable moments that will linger long after.
+        </p>
+        <p>
+          Indulge in a world of sophistication and refinement at our exquisite luxury hotel, where every detail is designed to offer you an unparalleled experience. Nestled in a prime location with breathtaking views, our hotel promises a sanctuary of serenity and opulence.
+        </p>
+        <hr>
+    </section>
+
+    <section class="form-container">
+        <h2>Leave a&nbsp;request and book a&nbsp;tour at&nbsp;the lowest price!</h2>
+        <form class="form">
+            <input class="form-field" name="name" type="text" placeholder="Name">
+            <input class="form-field" name="phone" type="tel" placeholder="Phone">
+            <input class="form-field" name="email" type="email" placeholder="E-mail">
+            <button class="form-button">Sign Up</button>
+        </form>
+    </section>
+
+    <footer>
+      <div class="footer-content">
+        <p class="copyright">&copy; 2024 Nikita Schasny</p>
+        <div class="social-icons">
+          <a href="#" class="social-icon"><img src="facebook-icon.png" alt="Facebook"></a>
+          <a href="#" class="social-icon"><img src="twitter-icon.png" alt="Twitter"></a>
+          <a href="#" class="social-icon"><img src="instagram-icon.png" alt="Instagram"></a>
+          <a href="#" class="social-icon"><img src="youtube-icon.png" alt="Booking"></a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Hamburger Menu Toggle
+      document.querySelector('.hamburger-menu').addEventListener('click', function() {
+          document.querySelector('.nav-links').classList.toggle('active');
+      });
+
+      // Form Submission
+      $(function(){
+          $('.form-button').on('click', function(){
+              let data = {
+                  'name': $('[name="name"]').val(),
+                  'phone': $('[name="phone"]').val(),
+                  'email': $('[name="email"]').val()
+              };
+              $.post('apip.php', data, function(response){
+                  if (response == 1) {
+                      $('[name="name"]').val('');
+                      $('[name="phone"]').val('');
+                      $('[name="email"]').val('');
+                      alert('Your response was recorded,\n we will contact you soon');
+                  } else {
+                      alert('Error Occurred: Try Again');
+                  }
+              });
+              return false;
+          });
+      });
+  </script>
+</body>
+</html>
